@@ -5,6 +5,6 @@ WORKDIR /usr/app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-ADD ./app .
+ADD . .
 
-CMD [ "python", "app.py" ]
+CMD [ "gunicorn", "--config", "gunicorn_config.py", "wsgi:app" ]
